@@ -1,0 +1,166 @@
+﻿<Window x:Class="KeeperProWpf.Windows.CreateRequestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Оформление индивидуальной заявки"
+        Height="760"
+        Width="900"
+        WindowStartupLocation="CenterScreen">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Форма записи на посещение"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20"/>
+
+            <GroupBox Header="Информация для пропуска" Grid.Row="1" Margin="0,0,0,15">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="250"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Дата начала:*" VerticalAlignment="Center" Margin="0,0,10,10"/>
+                    <DatePicker x:Name="DateStartPicker" Grid.Column="1" Margin="0,0,10,10"/>
+
+                    <TextBlock Text="Дата окончания:*" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,10"/>
+                    <DatePicker x:Name="DateEndPicker" Grid.Column="3" Margin="0,0,10,10"/>
+
+                    <TextBlock Text="Цель посещения:*" Grid.Row="1" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBox x:Name="VisitPurposeTextBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Height="30"/>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Header="Принимающая сторона" Grid.Row="2" Margin="0,0,0,15">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="540"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Подразделение:*" VerticalAlignment="Center" Margin="0,0,10,10"/>
+                    <ComboBox x:Name="DepartmentComboBox"
+                              Grid.Column="1"
+                              DisplayMemberPath="DepartmentName"
+                              SelectionChanged="DepartmentComboBox_SelectionChanged"
+                              Margin="0,0,0,10"/>
+
+                    <TextBlock Text="Сотрудник:*" Grid.Row="1" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <ComboBox x:Name="EmployeeComboBox"
+                              Grid.Row="1"
+                              Grid.Column="1"
+                              DisplayMemberPath="FullName"/>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Header="Информация о посетителе" Grid.Row="3" Margin="0,0,0,15">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition Width="220"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Фамилия:*" Margin="0,0,10,10" VerticalAlignment="Center"/>
+                    <TextBox x:Name="LastNameTextBox" Grid.Column="1" Height="28" Margin="0,0,10,10"/>
+
+                    <TextBlock Text="Организация:" Grid.Column="2" Margin="0,0,10,10" VerticalAlignment="Center"/>
+                    <TextBox x:Name="OrganizationTextBox" Grid.Column="3" Height="28" Margin="0,0,0,10"/>
+
+                    <TextBlock Text="Имя:*" Grid.Row="1" Margin="0,0,10,10" VerticalAlignment="Center"/>
+                    <TextBox x:Name="FirstNameTextBox" Grid.Row="1" Grid.Column="1" Height="28" Margin="0,0,10,10"/>
+
+                    <TextBlock Text="Примечание:*" Grid.Row="1" Grid.Column="2" Margin="0,0,10,10" VerticalAlignment="Center"/>
+                    <TextBox x:Name="NoteTextBox" Grid.Row="1" Grid.Column="3" Height="28" Margin="0,0,0,10"/>
+
+                    <TextBlock Text="Отчество:" Grid.Row="2" Margin="0,0,10,10" VerticalAlignment="Center"/>
+                    <TextBox x:Name="MiddleNameTextBox" Grid.Row="2" Grid.Column="1" Height="28" Margin="0,0,10,10"/>
+
+                    <TextBlock Text="Дата рождения:*" Grid.Row="2" Grid.Column="2" Margin="0,0,10,10" VerticalAlignment="Center"/>
+                    <DatePicker x:Name="BirthDatePicker" Grid.Row="2" Grid.Column="3" Margin="0,0,0,10"/>
+
+                    <TextBlock Text="Телефон:" Grid.Row="3" Margin="0,0,10,10" VerticalAlignment="Center"/>
+                    <TextBox x:Name="PhoneTextBox" Grid.Row="3" Grid.Column="1" Height="28" Margin="0,0,10,10"/>
+
+                    <TextBlock Text="Серия паспорта:*" Grid.Row="3" Grid.Column="2" Margin="0,0,10,10" VerticalAlignment="Center"/>
+                    <TextBox x:Name="PassportSeriesTextBox" Grid.Row="3" Grid.Column="3" Height="28" Margin="0,0,0,10"/>
+
+                    <TextBlock Text="Email:*" Grid.Row="4" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="VisitorEmailTextBox" Grid.Row="4" Grid.Column="1" Height="28" Margin="0,0,10,0"/>
+
+                    <TextBlock Text="Номер паспорта:*" Grid.Row="4" Grid.Column="2" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="PassportNumberTextBox" Grid.Row="4" Grid.Column="3" Height="28"/>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Header="Прикрепляемые документы" Grid.Row="4" Margin="0,0,0,15">
+                <StackPanel Margin="10">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <Button Content="Выбрать фото JPG"
+                                Width="180"
+                                Height="32"
+                                Margin="0,0,10,0"
+                                Click="SelectPhotoButton_Click"/>
+                        <TextBlock x:Name="PhotoPathTextBlock"
+                                   VerticalAlignment="Center"
+                                   Text="Фото не выбрано"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Выбрать скан паспорта PDF*"
+                                Width="180"
+                                Height="32"
+                                Margin="0,0,10,0"
+                                Click="SelectPassportPdfButton_Click"/>
+                        <TextBlock x:Name="PassportPdfPathTextBlock"
+                                   VerticalAlignment="Center"
+                                   Text="PDF не выбран"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+
+            <StackPanel Grid.Row="5"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,10,0,20">
+                <Button Content="Очистить"
+                        Width="130"
+                        Height="36"
+                        Margin="0,0,10,0"
+                        Click="ClearButton_Click"/>
+
+                <Button Content="Оформить заявку"
+                        Width="160"
+                        Height="36"
+                        Click="SaveButton_Click"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Window>

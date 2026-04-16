@@ -1,0 +1,57 @@
+﻿<Window x:Class="KeeperProWpf.Windows.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Авторизация"
+        Height="527"
+        Width="420"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Border BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="10" Padding="20">
+            <StackPanel>
+                <TextBlock Text="ХранительПРО"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,20"/>
+
+                <TextBlock Text="Email"/>
+                <TextBox x:Name="EmailTextBox"
+                         Height="32"
+                         Margin="0,5,0,15"/>
+
+                <TextBlock Text="Пароль"/>
+                <PasswordBox x:Name="PasswordBox"
+                             Height="32"
+                             Margin="0,5,0,20"/>
+
+                <TextBlock Text="Войти через:"
+                           FontWeight="SemiBold"
+                           Margin="0,0,0,10"/>
+
+                <Button x:Name="LoginSqlButton"
+                        Content="SQL"
+                        Height="35"
+                        Margin="0,0,0,10"
+                        Click="LoginSqlButton_Click"/>
+
+                <Button x:Name="LoginProcedureButton"
+                        Content="Procedure"
+                        Height="35"
+                        Margin="0,0,0,10"
+                        Click="LoginProcedureButton_Click"/>
+
+                <Button x:Name="LoginOrmButton"
+                        Content="ORM"
+                        Height="35"
+                        Margin="0,0,0,20"
+                        Click="LoginOrmButton_Click"/>
+
+                <Button x:Name="OpenRegisterButton"
+                        Content="Регистрация"
+                        Height="35"
+                        Click="OpenRegisterButton_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
