@@ -26,6 +26,17 @@ namespace KeeperProWpf.Windows
             var window = new RequestsWindow();
             window.ShowDialog();
         }
+        private void OpenGroupRequestWindow_Click(object sender, RoutedEventArgs e)
+        {
+            GroupRequestWindow window = new GroupRequestWindow();
+            window.ShowDialog();
+        }
+
+        private void OpenOfficeLoginWindow_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new KeeperProWpf.Windows.OfficeLoginWindow();
+            window.ShowDialog();
+        }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
@@ -35,5 +46,6 @@ namespace KeeperProWpf.Windows
             loginWindow.Show();
             Close();
         }
+
     }
 }

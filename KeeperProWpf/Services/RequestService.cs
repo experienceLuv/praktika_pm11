@@ -49,35 +49,32 @@ namespace KeeperProWpf.Services
                 .FirstAsync();
         }
 
-        public async Task<List<ApplicationListItem>> GetUserApplicationsAsync(int userId)
+        public async Task<List<object>> GetUserApplicationsAsync(int userId)
         {
-            using var db = new AppDbContext();
+            using var context = new AppDbContext();
 
-            var items = await db.Applications
-                .Include(x => x.ApplicationType)
-                .Include(x => x.Department)
-                .Include(x => x.Employee)
-                .Include(x => x.Status)
-                .Where(x => x.UserId == userId)
-                .OrderByDescending(x => x.CreatedAt)
-                .Select(x => new ApplicationListItem
+            var items = await context.Applications
+                .Include(a => a.ApplicationType)
+                .Include(a => a.Department)
+                .Include(a => a.Employee)
+                .Include(a => a.Status)
+                .Where(a => a.UserId == userId)
+                .OrderByDescending(a => a.ApplicationId)
+                .Select(a => new
                 {
-                    ApplicationId = x.ApplicationId,
-                    ApplicationType = x.ApplicationType != null ? x.ApplicationType.TypeName : "",
-                    DepartmentName = x.Department != null ? x.Department.DepartmentName : "",
-                    EmployeeName = x.Employee != null
-                        ? (x.Employee.LastName + " " + x.Employee.FirstName + " " + (x.Employee.MiddleName ?? "")).Trim()
-                        : "",
-                    DateStart = x.DateStart.ToString("dd.MM.yyyy"),
-                    DateEnd = x.DateEnd.ToString("dd.MM.yyyy"),
-                    VisitPurpose = x.VisitPurpose,
-                    StatusName = x.Status != null ? x.Status.StatusName : "",
-                    RejectionReason = x.RejectionReason ?? "",
-                    CreatedAt = x.CreatedAt.ToString("dd.MM.yyyy HH:mm")
+                    ID = a.ApplicationId,
+                    Тип = a.ApplicationType != null ? a.ApplicationType.TypeName : "",
+                    Подразделение = a.Department != null ? a.Department.DepartmentName : "",
+                    Сотрудник = a.Employee != null ? a.Employee.FullName : "",
+                    Начало = a.DateStart.ToString("dd.MM.yyyy"),
+                    Окончание = a.DateEnd.ToString("dd.MM.yyyy"),
+                    Цель_посещения = a.VisitPurpose,
+                    Статус = a.Status != null ? a.Status.StatusName : "",
+                    Причина = a.RejectionReason ?? ""
                 })
                 .ToListAsync();
 
-            return items;
+            return items.Cast<object>().ToList();
         }
 
         public async Task SaveIndividualRequestAsync(

@@ -24,16 +24,15 @@
                   CanUserAddRows="False"
                   Margin="0,0,0,15">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding ApplicationId}" Width="60"/>
-                <DataGridTextColumn Header="Тип" Binding="{Binding ApplicationType}" Width="100"/>
-                <DataGridTextColumn Header="Подразделение" Binding="{Binding DepartmentName}" Width="180"/>
-                <DataGridTextColumn Header="Сотрудник" Binding="{Binding EmployeeName}" Width="180"/>
-                <DataGridTextColumn Header="Начало" Binding="{Binding DateStart}" Width="90"/>
-                <DataGridTextColumn Header="Окончание" Binding="{Binding DateEnd}" Width="90"/>
-                <DataGridTextColumn Header="Цель посещения" Binding="{Binding VisitPurpose}" Width="180"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding StatusName}" Width="110"/>
-                <DataGridTextColumn Header="Причина отказа" Binding="{Binding RejectionReason}" Width="170"/>
-                <DataGridTextColumn Header="Создана" Binding="{Binding CreatedAt}" Width="130"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="60"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding Тип}" Width="100"/>
+                <DataGridTextColumn Header="Подразделение" Binding="{Binding Подразделение}" Width="180"/>
+                <DataGridTextColumn Header="Сотрудник" Binding="{Binding Сотрудник}" Width="180"/>
+                <DataGridTextColumn Header="Начало" Binding="{Binding Начало}" Width="90"/>
+                <DataGridTextColumn Header="Окончание" Binding="{Binding Окончание}" Width="90"/>
+                <DataGridTextColumn Header="Цель посещения" Binding="{Binding Цель_посещения}" Width="180"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Статус}" Width="110"/>
+                <DataGridTextColumn Header="Причина отказа" Binding="{Binding Причина}" Width="170"/>
             </DataGrid.Columns>
         </DataGrid>
 

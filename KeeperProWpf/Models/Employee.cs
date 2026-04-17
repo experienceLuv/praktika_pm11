@@ -34,6 +34,9 @@ namespace KeeperProWpf.Models
         [Column("is_active")]
         public bool IsActive { get; set; }
 
+        [Column("employee_code")]
+        public string? EmployeeCode { get; set; }
+
         public Department? Department { get; set; }
 
         [NotMapped]

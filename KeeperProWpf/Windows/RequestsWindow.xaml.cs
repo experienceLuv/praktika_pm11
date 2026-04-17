@@ -31,6 +31,8 @@ namespace KeeperProWpf.Windows
                 }
 
                 var items = await _requestService.GetUserApplicationsAsync(UserSession.CurrentUser.UserId);
+
+                RequestsDataGrid.ItemsSource = null;
                 RequestsDataGrid.ItemsSource = items;
             }
             catch (Exception ex)
