@@ -1,0 +1,67 @@
+DROP FUNCTION IF EXISTS keeperpro.filtering_requests(text, text, text);
+
+CREATE OR REPLACE FUNCTION keeperpro.filtering_requests(
+    p_application_type text DEFAULT NULL,
+    p_department_name text DEFAULT NULL,
+    p_status_name text DEFAULT NULL
+)
+RETURNS TABLE (
+    "ApplicationId" int,
+    "UserId" int,
+    "ApplicationType" text,
+    "DepartmentName" text,
+    "EmployeeName" text,
+    "DateStart" timestamp with time zone,
+    "DateEnd" timestamp with time zone,
+    "VisitPurpose" text,
+    "Note" text,
+    "StatusName" text,
+    "RejectionReason" text,
+    "CreatedAt" timestamp with time zone,
+    "UpdatedAt" timestamp with time zone,
+    "VisitorId" int,
+    "VisitorLastName" text,
+    "VisitorFirstName" text,
+    "VisitorMiddleName" text,
+    "VisitorPhone" text,
+    "VisitorEmail" text,
+    "VisitorOrganization" text,
+    "VisitorBirthDate" timestamp with time zone,
+    "PassportSeries" text,
+    "PassportNumber" text,
+    "VisitorOrder" int
+)
+LANGUAGE sql
+AS $$
+    SELECT
+        v."ApplicationId",
+        v."UserId",
+        v."ApplicationType"::text,
+        v."DepartmentName"::text,
+        v."EmployeeName"::text,
+        v."DateStart",
+        v."DateEnd",
+        v."VisitPurpose"::text,
+        v."Note"::text,
+        v."StatusName"::text,
+        v."RejectionReason"::text,
+        v."CreatedAt",
+        v."UpdatedAt",
+        v."VisitorId",
+        v."VisitorLastName"::text,
+        v."VisitorFirstName"::text,
+        v."VisitorMiddleName"::text,
+        v."VisitorPhone"::text,
+        v."VisitorEmail"::text,
+        v."VisitorOrganization"::text,
+        v."VisitorBirthDate",
+        v."PassportSeries"::text,
+        v."PassportNumber"::text,
+        v."VisitorOrder"
+    FROM keeperpro.view_list_requests v
+    WHERE
+        (p_application_type IS NULL OR v."ApplicationType" = p_application_type)
+        AND (p_department_name IS NULL OR v."DepartmentName" = p_department_name)
+        AND (p_status_name IS NULL OR v."StatusName" = p_status_name)
+    ORDER BY v."ApplicationId" DESC, v."VisitorOrder" ASC;
+$$;

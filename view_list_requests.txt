@@ -1,0 +1,41 @@
+DROP VIEW IF EXISTS keeperpro.view_list_requests;
+
+CREATE VIEW keeperpro.view_list_requests AS
+SELECT
+    a.application_id AS "ApplicationId",
+    a.user_id AS "UserId",
+    at.type_name AS "ApplicationType",
+    d.department_name AS "DepartmentName",
+    CONCAT(e.last_name, ' ', e.first_name, ' ', COALESCE(e.middle_name, '')) AS "EmployeeName",
+    a.date_start AS "DateStart",
+    a.date_end AS "DateEnd",
+    a.visit_purpose AS "VisitPurpose",
+    a.note AS "Note",
+    s.status_name AS "StatusName",
+    a.rejection_reason AS "RejectionReason",
+    a.created_at AS "CreatedAt",
+    a.updated_at AS "UpdatedAt",
+    v.visitor_id AS "VisitorId",
+    v.last_name AS "VisitorLastName",
+    v.first_name AS "VisitorFirstName",
+    v.middle_name AS "VisitorMiddleName",
+    v.phone AS "VisitorPhone",
+    v.email AS "VisitorEmail",
+    v.organization AS "VisitorOrganization",
+    v.birth_date AS "VisitorBirthDate",
+    v.passport_series AS "PassportSeries",
+    v.passport_number AS "PassportNumber",
+    av.visitor_order AS "VisitorOrder"
+FROM keeperpro.applications a
+JOIN keeperpro.application_types at
+    ON a.application_type_id = at.application_type_id
+JOIN keeperpro.departments d
+    ON a.department_id = d.department_id
+JOIN keeperpro.employees e
+    ON a.employee_id = e.employee_id
+JOIN keeperpro.application_statuses s
+    ON a.status_id = s.status_id
+LEFT JOIN keeperpro.application_visitors av
+    ON a.application_id = av.application_id
+LEFT JOIN keeperpro.visitors v
+    ON av.visitor_id = v.visitor_id;
