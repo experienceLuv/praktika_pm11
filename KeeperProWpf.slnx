@@ -1,3 +1,5 @@
 <Solution>
+  <Project Path="KeeperProWpf.Department/KeeperProWpf.Department.csproj" Id="203e23b2-1a60-4fa2-b61f-65bd429d354e" />
+  <Project Path="KeeperProWpf.Security/KeeperProWpf.Security.csproj" Id="89a90745-dcfe-4db4-ab52-5a2aac51efd8" />
   <Project Path="KeeperProWpf/KeeperProWpf.csproj" />
 </Solution>

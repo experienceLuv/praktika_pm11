@@ -1,0 +1,37 @@
+﻿<Window x:Class="KeeperProWpf.Department.Windows.DepartmentVisitWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Работа с заявкой"
+        Height="650"
+        Width="900"
+        WindowStartupLocation="CenterScreen">
+    <ScrollViewer>
+        <StackPanel Margin="15">
+            <TextBlock Text="Информация по заявке" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+
+            <TextBlock Text="Тип"/>
+            <TextBox x:Name="TypeTextBox" IsReadOnly="True"/>
+
+            <TextBlock Text="Подразделение" Margin="0,10,0,0"/>
+            <TextBox x:Name="DepartmentTextBox" IsReadOnly="True"/>
+
+            <TextBlock Text="Сотрудник" Margin="0,10,0,0"/>
+            <TextBox x:Name="EmployeeTextBox" IsReadOnly="True"/>
+
+            <TextBlock Text="Посетители" Margin="0,10,0,0"/>
+            <ListBox x:Name="VisitorsListBox" Height="200">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <EventSetter Event="PreviewMouseRightButtonDown" Handler="VisitorItem_RightClick"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                <Button Content="Подтвердить приход" Width="160" Margin="0,0,10,0" Click="ConfirmArrivalButton_Click"/>
+                <Button Content="Подтвердить уход" Width="160" Margin="0,0,10,0" Click="ConfirmExitButton_Click"/>
+                <Button Content="Закрыть" Width="120" Click="CloseButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

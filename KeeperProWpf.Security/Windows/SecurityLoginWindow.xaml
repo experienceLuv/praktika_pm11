@@ -1,0 +1,33 @@
+﻿<Window x:Class="KeeperProWpf.Security.Windows.SecurityLoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Терминал сотрудника охраны - вход"
+        Height="220"
+        Width="420"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Авторизация сотрудника охраны"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Margin="0,0,0,20"/>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Код сотрудника"/>
+            <TextBox x:Name="EmployeeCodeTextBox" Height="30"/>
+        </StackPanel>
+
+        <Button Grid.Row="2"
+                Content="Войти"
+                Height="35"
+                Width="120"
+                HorizontalAlignment="Right"
+                Margin="0,20,0,0"
+                Click="LoginButton_Click"/>
+    </Grid>
+</Window>
