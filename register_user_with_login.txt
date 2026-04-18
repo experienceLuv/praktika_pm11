@@ -1,0 +1,37 @@
+CREATE OR REPLACE FUNCTION keeperpro.register_user_with_login(
+    p_email text,
+    p_password_hash text,
+    p_role_id int DEFAULT 1
+)
+RETURNS TABLE (
+    user_id int,
+    email text,
+    login text,
+    message text
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_user_id int;
+    v_login text;
+    v_email_prefix text;
+BEGIN
+    INSERT INTO keeperpro.users (email, password_hash, role_id, created_at, is_active)
+    VALUES (p_email, p_password_hash, p_role_id, CURRENT_TIMESTAMP, true)
+    RETURNING users.user_id INTO v_user_id;
+
+    v_email_prefix := split_part(p_email, '@', 1);
+    v_login := v_email_prefix || v_user_id;
+
+    UPDATE keeperpro.users
+    SET login = v_login
+    WHERE users.user_id = v_user_id;
+
+    RETURN QUERY
+    SELECT
+        v_user_id,
+        p_email,
+        v_login,
+        'Ваш логин в системе: ' || v_login;
+END;
+$$;
