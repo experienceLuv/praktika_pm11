@@ -1,6 +1,7 @@
-﻿using KeeperProWpf.Models;
+﻿using KeeperProWpf.Data;
+using KeeperProWpf.Models;
+using KeeperProWpf.Office.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Data;
 
 namespace KeeperProWpf.Data
 {
@@ -16,6 +17,8 @@ namespace KeeperProWpf.Data
         public DbSet<ApplicationStatus> ApplicationStatuses => Set<ApplicationStatus>();
         public DbSet<ApplicationVisitor> ApplicationVisitors => Set<ApplicationVisitor>();
         public DbSet<DocumentEntity> Documents => Set<DocumentEntity>();
+        public DbSet<VisitLog> VisitLogs => Set<VisitLog>();
+        public DbSet<BlackListEntry> BlackListEntries => Set<BlackListEntry>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -53,6 +56,16 @@ namespace KeeperProWpf.Data
                 .HasOne(x => x.ApplicationType)
                 .WithMany()
                 .HasForeignKey(x => x.ApplicationTypeId);
+
+            modelBuilder.Entity<VisitLog>()
+                .HasOne(v => v.Application)
+                .WithMany()
+                .HasForeignKey(v => v.ApplicationId);
+
+            modelBuilder.Entity<VisitLog>()
+                .HasOne(v => v.Visitor)
+                .WithMany()
+                .HasForeignKey(v => v.VisitorId);
         }
     }
 }

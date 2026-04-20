@@ -1,6 +1,7 @@
-﻿using System.Windows;
+﻿using KeeperProWpf.Office.Windows;
 using KeeperProWpf.Services;
 using KeeperProWpf.ViewModels;
+using System.Windows;
 
 namespace KeeperProWpf.Windows
 {
@@ -12,6 +13,7 @@ namespace KeeperProWpf.Windows
         {
             InitializeComponent();
             Loaded += OfficeTerminalWindow_Loaded;
+            _autoReportService.Start();
         }
 
         private async void OfficeTerminalWindow_Loaded(object sender, RoutedEventArgs e)
@@ -82,6 +84,19 @@ namespace KeeperProWpf.Windows
             window.ShowDialog();
 
             _ = LoadApplicationsAsync();
+        }
+        private void OpenReportsButton_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new OfficeReportsWindow();
+            window.ShowDialog();
+        }
+
+        private readonly OfficeAutoReportService _autoReportService = new OfficeAutoReportService();
+
+        private async void TestAutoReportButton_Click(object sender, RoutedEventArgs e)
+        {
+            await _autoReportService.GenerateVisitorsCountReportAsync(DateTime.Now);
+            MessageBox.Show("Тестовый отчет сформирован.");
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

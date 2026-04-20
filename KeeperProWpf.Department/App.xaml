@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:KeeperProWpf.Department"
              StartupUri="Windows/DepartmentLoginWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
